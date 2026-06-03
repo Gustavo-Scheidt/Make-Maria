@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     p.classList.add('particle');
 
     const size = Math.random() * 8 + 3;
-    const x    = Math.random() * 100;
-    const dur  = Math.random() * 12 + 8;
-    const del  = Math.random() * 12;
+    const x = Math.random() * 100;
+    const dur = Math.random() * 12 + 8;
+    const del = Math.random() * 12;
     const color = COLORS[Math.floor(Math.random() * COLORS.length)];
 
     p.style.cssText = `
@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealEls.forEach(el => revealObserver.observe(el));
 
-  // Revelar itens do hero imediatamente
   const heroReveal = document.querySelectorAll('.hero .reveal');
   setTimeout(() => {
     heroReveal.forEach(el => el.classList.add('visible'));
@@ -68,19 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─────────────────────────────────────────
      3. MENU DRAWER
   ───────────────────────────────────────── */
-  const menuBtn        = document.getElementById('menuBtn');
-  const navDrawer      = document.getElementById('navDrawer');
-  const drawerClose    = document.getElementById('drawerClose');
-  const drawerOverlay  = document.getElementById('drawerOverlay');
+  const menuBtn = document.getElementById('menuBtn');
+  const navDrawer = document.getElementById('navDrawer');
+  const drawerClose = document.getElementById('drawerClose');
+  const drawerOverlay = document.getElementById('drawerOverlay');
 
   function openDrawer() {
     navDrawer.classList.add('open');
     drawerOverlay.classList.add('show');
     document.body.style.overflow = 'hidden';
-    // Animar linhas do hambúrguer
+
     const spans = menuBtn.querySelectorAll('span');
     spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
-    spans[1].style.opacity   = '0';
+    spans[1].style.opacity = '0';
     spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
   }
 
@@ -88,9 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
     navDrawer.classList.remove('open');
     drawerOverlay.classList.remove('show');
     document.body.style.overflow = '';
+
     const spans = menuBtn.querySelectorAll('span');
     spans[0].style.transform = '';
-    spans[1].style.opacity   = '';
+    spans[1].style.opacity = '';
     spans[2].style.transform = '';
   }
 
@@ -98,122 +98,171 @@ document.addEventListener('DOMContentLoaded', () => {
   drawerClose.addEventListener('click', closeDrawer);
   drawerOverlay.addEventListener('click', closeDrawer);
 
-  // Fechar ao clicar em link do menu
   navDrawer.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeDrawer);
   });
 
   /* ─────────────────────────────────────────
-     4. CARROSSEL DE PERFUMES
+     4. CARROSSEL DE PRODUTOS
+     Funciona para: Dia dos Namorados + Produtos Mais Vendidos
   ───────────────────────────────────────── */
-  const carousel   = document.getElementById('carousel');
-  const dotsWrap   = document.getElementById('carouselDots');
-  const prevBtn    = document.getElementById('prevBtn');
-  const nextBtn    = document.getElementById('nextBtn');
-  const cards      = carousel.querySelectorAll('.perfume-card');
-  const CARD_COUNT = cards.length;
-  let currentIndex = 0;
+  function initCarousel(config) {
+    const carousel = document.getElementById(config.carouselId);
+    const dotsWrap = document.getElementById(config.dotsId);
+    const prevBtn = document.getElementById(config.prevBtnId);
+    const nextBtn = document.getElementById(config.nextBtnId);
 
-  // Criar dots
-  for (let i = 0; i < CARD_COUNT; i++) {
-    const dot = document.createElement('button');
-    dot.classList.add('dot');
-    dot.setAttribute('aria-label', `Perfume ${i + 1}`);
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(dot);
-  }
+    if (!carousel || !dotsWrap || !prevBtn || !nextBtn) return;
 
-  function updateDots(idx) {
-    dotsWrap.querySelectorAll('.dot').forEach((d, i) => {
-      d.classList.toggle('active', i === idx);
+    const cards = carousel.querySelectorAll('.perfume-card');
+    const CARD_COUNT = cards.length;
+
+    if (CARD_COUNT === 0) return;
+
+    let currentIndex = 0;
+    let autoPlay;
+
+    dotsWrap.innerHTML = '';
+
+    for (let i = 0; i < CARD_COUNT; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('dot');
+      dot.setAttribute('aria-label', `Produto ${i + 1}`);
+
+      if (i === 0) dot.classList.add('active');
+
+      dot.addEventListener('click', () => {
+        clearInterval(autoPlay);
+        goTo(i);
+      });
+
+      dotsWrap.appendChild(dot);
+    }
+
+    function updateDots(idx) {
+      dotsWrap.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+    }
+
+    function updateActiveCard(idx) {
+      cards.forEach((card, i) => {
+        card.classList.toggle('active-card', i === idx);
+      });
+    }
+
+    function goTo(idx) {
+      currentIndex = Math.max(0, Math.min(idx, CARD_COUNT - 1));
+
+      const cardWidth = cards[0].offsetWidth;
+      const gap = 16;
+      const scrollTo = currentIndex * (cardWidth + gap);
+
+      carousel.scrollTo({
+        left: scrollTo,
+        behavior: 'smooth'
+      });
+
+      updateDots(currentIndex);
+      updateActiveCard(currentIndex);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      clearInterval(autoPlay);
+      goTo(currentIndex - 1);
     });
-  }
 
-  function updateActiveCard(idx) {
-    cards.forEach((c, i) => {
-      c.classList.toggle('active-card', i === idx);
+    nextBtn.addEventListener('click', () => {
+      clearInterval(autoPlay);
+      goTo(currentIndex + 1);
     });
-  }
 
-  function goTo(idx) {
-    currentIndex = Math.max(0, Math.min(idx, CARD_COUNT - 1));
-    const cardWidth  = cards[0].offsetWidth;
-    const gap        = 16;
-    const paddingL   = 28;
-    const scrollTo   = currentIndex * (cardWidth + gap);
-    carousel.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    updateDots(currentIndex);
-    updateActiveCard(currentIndex);
-  }
+    let scrollTimeout;
 
-  prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
-  nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
 
-  // Detectar scroll manual e atualizar dots
-  let scrollTimeout;
-  carousel.addEventListener('scroll', () => {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
+      scrollTimeout = setTimeout(() => {
+        const cardWidth = cards[0].offsetWidth + 16;
+        const idx = Math.round(carousel.scrollLeft / cardWidth);
+
+        if (idx !== currentIndex) {
+          currentIndex = Math.max(0, Math.min(idx, CARD_COUNT - 1));
+          updateDots(currentIndex);
+          updateActiveCard(currentIndex);
+        }
+      }, 80);
+    });
+
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    carousel.addEventListener('mousedown', e => {
+      isDragging = true;
+      startX = e.pageX;
+      scrollStart = carousel.scrollLeft;
+      carousel.classList.add('grabbing');
+    });
+
+    carousel.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      carousel.scrollLeft = scrollStart - (e.pageX - startX);
+    });
+
+    carousel.addEventListener('mouseup', stopDrag);
+    carousel.addEventListener('mouseleave', stopDrag);
+
+    function stopDrag() {
+      if (!isDragging) return;
+
+      isDragging = false;
+      carousel.classList.remove('grabbing');
+
       const cardWidth = cards[0].offsetWidth + 16;
       const idx = Math.round(carousel.scrollLeft / cardWidth);
-      if (idx !== currentIndex) {
-        currentIndex = idx;
-        updateDots(currentIndex);
-        updateActiveCard(currentIndex);
-      }
-    }, 80);
-  });
 
-  // Drag/swipe no desktop
-  let isDragging = false, startX = 0, scrollStart = 0;
+      goTo(idx);
+    }
 
-  carousel.addEventListener('mousedown', e => {
-    isDragging = true;
-    startX = e.pageX;
-    scrollStart = carousel.scrollLeft;
-    carousel.classList.add('grabbing');
-  });
+    autoPlay = setInterval(() => {
+      const next = (currentIndex + 1) % CARD_COUNT;
+      goTo(next);
+    }, 3500);
 
-  carousel.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    carousel.scrollLeft = scrollStart - (e.pageX - startX);
-  });
+    carousel.addEventListener('touchstart', () => {
+      clearInterval(autoPlay);
+    }, { passive: true });
 
-  carousel.addEventListener('mouseup', () => stopDrag());
-  carousel.addEventListener('mouseleave', () => stopDrag());
+    carousel.addEventListener('mousedown', () => {
+      clearInterval(autoPlay);
+    });
 
-  function stopDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-    carousel.classList.remove('grabbing');
-    // Snap ao card mais próximo
-    const cardWidth = cards[0].offsetWidth + 16;
-    const idx = Math.round(carousel.scrollLeft / cardWidth);
-    goTo(idx);
+    updateActiveCard(0);
   }
 
-  // Auto-play do carrossel
-  let autoPlay = setInterval(() => {
-    const next = (currentIndex + 1) % CARD_COUNT;
-    goTo(next);
-  }, 3500);
+  initCarousel({
+    carouselId: 'carouselNamorados',
+    dotsId: 'carouselDotsNamorados',
+    prevBtnId: 'prevBtnNam',
+    nextBtnId: 'nextBtnNam'
+  });
 
-  // Pausar auto-play ao interagir
-  carousel.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
-  carousel.addEventListener('mousedown', () => clearInterval(autoPlay));
-  prevBtn.addEventListener('click', () => { clearInterval(autoPlay); });
-  nextBtn.addEventListener('click', () => { clearInterval(autoPlay); });
-
-  // Inicializar
-  updateActiveCard(0);
+  initCarousel({
+    carouselId: 'carousel',
+    dotsId: 'carouselDots',
+    prevBtnId: 'prevBtn',
+    nextBtnId: 'nextBtn'
+  });
 
   /* ─────────────────────────────────────────
      5. EFEITO PARALLAX SUAVE NO HERO
   ───────────────────────────────────────── */
   const heroBg = document.querySelector('.hero-bg-blur');
+
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
+
     if (heroBg) {
       heroBg.style.transform = `translateY(${y * 0.3}px)`;
     }
@@ -227,12 +276,13 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.overflow = 'hidden';
 
     el.addEventListener('click', function(e) {
-      const rect   = el.getBoundingClientRect();
-      const size   = Math.max(rect.width, rect.height) * 2;
-      const x      = e.clientX - rect.left - size / 2;
-      const y      = e.clientY - rect.top  - size / 2;
+      const rect = el.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
 
       const ripple = document.createElement('span');
+
       ripple.style.cssText = `
         position: absolute;
         border-radius: 50%;
@@ -245,12 +295,12 @@ document.addEventListener('DOMContentLoaded', () => {
         animation: ripple-anim 0.5s ease-out forwards;
         pointer-events: none;
       `;
+
       el.appendChild(ripple);
       setTimeout(() => ripple.remove(), 600);
     });
   }
 
-  // Adicionar estilo de ripple globalmente
   const style = document.createElement('style');
   style.textContent = `@keyframes ripple-anim { to { transform: scale(1); opacity: 0; } }`;
   document.head.appendChild(style);
@@ -258,18 +308,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.btn-primary, .btn-whatsapp, .card-btn').forEach(addRipple);
 
   /* ─────────────────────────────────────────
-     7. ANIMAÇÃO NO ÍCONE DA BORBOLETA (navbar)
+     7. ANIMAÇÃO NO ÍCONE DA BORBOLETA
   ───────────────────────────────────────── */
   const butterfly = document.querySelector('.butterfly');
+
   if (butterfly) {
     butterfly.addEventListener('click', () => {
       butterfly.style.animation = 'none';
       butterfly.style.transform = 'scale(1.3) rotate(15deg)';
       butterfly.style.transition = 'transform 0.3s';
+
       setTimeout(() => {
         butterfly.style.transform = '';
         butterfly.style.transition = '';
-        butterfly.style.animation  = '';
+        butterfly.style.animation = '';
       }, 400);
     });
   }
@@ -298,9 +350,10 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(s => navObserver.observe(s));
 
   /* ─────────────────────────────────────────
-     9. LOADING ANIMADO (splash screen)
+     9. LOADING ANIMADO
   ───────────────────────────────────────── */
   const splashStyle = document.createElement('style');
+
   splashStyle.textContent = `
     #splash {
       position: fixed; inset: 0; background: #fdf8f6;
@@ -313,9 +366,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     @keyframes splash-land {
       0%   { transform: translateY(-180px) rotate(-12deg); opacity: 0; }
-      65%  { transform: translateY(8px) rotate(2deg);      opacity: 1; }
+      65%  { transform: translateY(8px) rotate(2deg); opacity: 1; }
       83%  { transform: translateY(-4px) rotate(-1deg); }
-      100% { transform: translateY(0) rotate(0deg);         opacity: 1; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 1; }
     }
     .splash-wing-left {
       transform-box: fill-box;
@@ -327,8 +380,14 @@ document.addEventListener('DOMContentLoaded', () => {
       transform-origin: left center;
       animation: splash-flap-right 2s ease-in-out infinite;
     }
-    @keyframes splash-flap-left  { 0%,100%{ transform: scaleX(1); } 50%{ transform: scaleX(0.25); } }
-    @keyframes splash-flap-right { 0%,100%{ transform: scaleX(1); } 50%{ transform: scaleX(0.25); } }
+    @keyframes splash-flap-left {
+      0%,100% { transform: scaleX(1); }
+      50% { transform: scaleX(0.25); }
+    }
+    @keyframes splash-flap-right {
+      0%,100% { transform: scaleX(1); }
+      50% { transform: scaleX(0.25); }
+    }
     .splash-brand {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 28px;
@@ -347,12 +406,16 @@ document.addEventListener('DOMContentLoaded', () => {
       opacity: 0;
       animation: splash-fadein 0.7s 2.5s forwards;
     }
-    @keyframes splash-fadein { to { opacity: 1; } }
+    @keyframes splash-fadein {
+      to { opacity: 1; }
+    }
   `;
+
   document.head.appendChild(splashStyle);
 
   const splash = document.createElement('div');
   splash.id = 'splash';
+
   splash.innerHTML = `
     <div class="splash-butterfly">
       <svg width="160" height="130" viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
@@ -389,14 +452,16 @@ document.addEventListener('DOMContentLoaded', () => {
     <span class="splash-brand">Make Maria</span>
     <span class="splash-sub">COSMÉTICOS</span>
   `;
+
   document.body.prepend(splash);
 
   window.addEventListener('load', () => {
     setTimeout(() => {
       splash.style.opacity = '0';
       splash.style.transform = 'scale(1.05)';
+
       setTimeout(() => splash.remove(), 600);
-    }, 4800);
+    }, 3800);
   });
 
 });
