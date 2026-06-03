@@ -300,19 +300,94 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─────────────────────────────────────────
      9. LOADING ANIMADO (splash screen)
   ───────────────────────────────────────── */
+  const splashStyle = document.createElement('style');
+  splashStyle.textContent = `
+    #splash {
+      position: fixed; inset: 0; background: #fdf8f6;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 9999; transition: opacity 0.6s, transform 0.6s;
+    }
+    .splash-butterfly {
+      animation: splash-land 2.4s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes splash-land {
+      0%   { transform: translateY(-180px) rotate(-12deg); opacity: 0; }
+      65%  { transform: translateY(8px) rotate(2deg);      opacity: 1; }
+      83%  { transform: translateY(-4px) rotate(-1deg); }
+      100% { transform: translateY(0) rotate(0deg);         opacity: 1; }
+    }
+    .splash-wing-left {
+      transform-box: fill-box;
+      transform-origin: right center;
+      animation: splash-flap-left 2s ease-in-out infinite;
+    }
+    .splash-wing-right {
+      transform-box: fill-box;
+      transform-origin: left center;
+      animation: splash-flap-right 2s ease-in-out infinite;
+    }
+    @keyframes splash-flap-left  { 0%,100%{ transform: scaleX(1); } 50%{ transform: scaleX(0.25); } }
+    @keyframes splash-flap-right { 0%,100%{ transform: scaleX(1); } 50%{ transform: scaleX(0.25); } }
+    .splash-brand {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      color: #1a1a2e;
+      letter-spacing: 2px;
+      margin-top: 18px;
+      opacity: 0;
+      animation: splash-fadein 0.7s 2.2s forwards;
+    }
+    .splash-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #7EC8E3;
+      margin-top: 5px;
+      opacity: 0;
+      animation: splash-fadein 0.7s 2.5s forwards;
+    }
+    @keyframes splash-fadein { to { opacity: 1; } }
+  `;
+  document.head.appendChild(splashStyle);
+
   const splash = document.createElement('div');
   splash.id = 'splash';
-  splash.style.cssText = `
-    position: fixed; inset: 0; background: #fdf8f6;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    z-index: 9999; transition: opacity 0.6s, transform 0.6s;
-  `;
-  // ✏️ MODIFICADO: logo no splash screen — troque "imagens/logo.png" pela sua imagem
   splash.innerHTML = `
-    <img src="img/logo.png" style="width:330px; margin-bottom:16px;" alt="Logo Make Maria" />
-    <span style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#1a1a2e;">Make Maria</span>
-    <span style="font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:3px; color:#7EC8E3; margin-top:4px;">COSMÉTICOS </span>
+    <div class="splash-butterfly">
+      <svg width="160" height="130" viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg">
+        <g class="splash-wing-left">
+          <path d="M72,52 C68,44 58,28 42,18 C30,10 14,10 8,20 C2,30 10,44 24,50 C38,56 60,54 72,52Z"
+                fill="none" stroke="#1a1a2e" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M72,52 C60,44 36,30 16,26" fill="none" stroke="#1a1a2e" stroke-width="0.5" stroke-linecap="round" opacity="0.4"/>
+          <path d="M72,52 C58,48 40,42 24,46" fill="none" stroke="#1a1a2e" stroke-width="0.5" stroke-linecap="round" opacity="0.3"/>
+        </g>
+        <g class="splash-wing-right">
+          <path d="M88,52 C92,44 102,28 118,18 C130,10 146,10 152,20 C158,30 150,44 136,50 C122,56 100,54 88,52Z"
+                fill="none" stroke="#1a1a2e" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M88,52 C100,44 124,30 144,26" fill="none" stroke="#1a1a2e" stroke-width="0.5" stroke-linecap="round" opacity="0.4"/>
+          <path d="M88,52 C102,48 120,42 136,46" fill="none" stroke="#1a1a2e" stroke-width="0.5" stroke-linecap="round" opacity="0.3"/>
+        </g>
+        <g class="splash-wing-left">
+          <path d="M72,58 C66,66 50,82 32,82 C18,82 10,72 16,62 C22,54 46,54 72,58Z"
+                fill="none" stroke="#1a1a2e" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M72,58 C58,64 38,72 24,70" fill="none" stroke="#1a1a2e" stroke-width="0.5" stroke-linecap="round" opacity="0.3"/>
+        </g>
+        <g class="splash-wing-right">
+          <path d="M88,58 C94,66 110,82 128,82 C142,82 150,72 144,62 C138,54 114,54 88,58Z"
+                fill="none" stroke="#1a1a2e" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M88,58 C102,64 122,72 136,70" fill="none" stroke="#1a1a2e" stroke-width="0.5" stroke-linecap="round" opacity="0.3"/>
+        </g>
+        <path d="M80,30 C78,40 77,50 78,68 C78.5,74 80,78 80,78 C80,78 81.5,74 82,68 C83,50 82,40 80,30Z" fill="#1a1a2e"/>
+        <circle cx="80" cy="28" r="3.5" fill="#1a1a2e"/>
+        <path d="M79,25 C75,17 66,10 62,6" stroke="#1a1a2e" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <circle cx="62" cy="6" r="1.8" fill="#1a1a2e"/>
+        <path d="M81,25 C85,17 94,10 98,6" stroke="#1a1a2e" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <circle cx="98" cy="6" r="1.8" fill="#1a1a2e"/>
+      </svg>
+    </div>
+    <span class="splash-brand">Make Maria</span>
+    <span class="splash-sub">COSMÉTICOS</span>
   `;
   document.body.prepend(splash);
 
@@ -321,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
       splash.style.opacity = '0';
       splash.style.transform = 'scale(1.05)';
       setTimeout(() => splash.remove(), 600);
-    }, 800);
+    }, 4800);
   });
 
 });
