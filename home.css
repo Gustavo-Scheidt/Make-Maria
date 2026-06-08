@@ -721,29 +721,6 @@ body {
   box-shadow: 0 4px 16px rgba(37,211,102,0.3);
 }
 
-/* Botão Loja Natura */
-.btn-natura {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(135deg, var(--rose), #c8607a);
-  color: var(--white);
-  padding: 18px;
-  border-radius: 16px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 0.3px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 8px 32px rgba(232,160,176,0.35);
-}
-
-.btn-natura:active {
-  transform: scale(0.97);
-  box-shadow: 0 4px 16px rgba(232,160,176,0.3);
-}
-
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -794,33 +771,34 @@ body {
   .perfume-card { min-width: 190px; max-width: 190px; }
 }
 
-.btn-natura{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-
-    background: #fff;      /* botão branco */
-    color: #000;           /* texto preto */
-    border: 1px solid #ddd;
-    border-radius: 16px;
-
-    padding: 14px 24px;
-    text-decoration: none;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+/* ============================================================
+   BOTÃO NATURA
+   ============================================================ */
+.btn-natura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 14px 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.btn-natura:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+.btn-natura:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-.natura-logo-btn{
-    height: 50px;   /* aumenta a logo */
-    width: auto;
-    object-fit: contain;
+.natura-logo-btn {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
 }
+
 /* ============================================================
    DIA DOS NAMORADOS
    ============================================================ */
@@ -848,3 +826,101 @@ body {
 }
 .namorados-hearts { font-size: 12px; color: #e8a0b0; margin-bottom: 8px; letter-spacing: 3px; }
 .namorados-btn { background: linear-gradient(135deg, #e8a0b0, #c8607a) !important; }
+
+/* ============================================================
+   AVALIAÇÕES GOOGLE
+   ============================================================ */
+.reviews-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(126,200,227,0.08);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.review-header strong {
+  font-size: 14px;
+  color: var(--dark);
+  display: block;
+}
+
+.review-stars {
+  color: #f0b430;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.review-text {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+.btn-reviews {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--dark);
+  border: 1px solid var(--blue);
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+  animation: pulse-border 2s ease-in-out infinite;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(126,200,227,0.5); }
+  50%       { box-shadow: 0 0 0 7px rgba(126,200,227,0); }
+}
+
+.btn-reviews:active {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+.btn-reviews .icon-hand {
+  animation: hand-click 1.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes hand-click {
+  0%, 100% { transform: translateY(0) scale(1);    opacity: 1; }
+  40%       { transform: translateY(2px) scale(0.9); opacity: 0.7; }
+  60%       { transform: translateY(0) scale(1);    opacity: 1; }
+}

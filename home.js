@@ -465,3 +465,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+document.querySelector('.btn-reviews')?.addEventListener('click', function(e) {
+  const btn = this;
+  const ripple = document.createElement('span');
+  ripple.classList.add('ripple');
+
+  const rect = btn.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top - size / 2;
+
+  ripple.style.width = ripple.style.height = `${size}px`;
+  ripple.style.left = `${x}px`;
+  ripple.style.top = `${y}px`;
+
+  btn.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 500);
+
+  // preenche o botão
+  btn.style.background = 'var(--blue)';
+  btn.style.borderColor = 'var(--blue)';
+  btn.style.color = '#fff';
+  setTimeout(() => {
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+  }, 600);
+});
