@@ -83,8 +83,9 @@ body {
 }
 
 .butterfly {
-  width: 180px;
+  width: 160px;
   height: auto;
+  display: block;
 }
 
 @keyframes flutter {
@@ -205,7 +206,7 @@ body {
   right: -80px;
   width: 320px;
   height: 320px;
-  background: radial-gradient(circle, rgba(232,160,176,0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(143, 218, 214, 0.187) 0%, transparent 70%);
   pointer-events: none;
   animation: pulse-bg 4s ease-in-out infinite;
 }
