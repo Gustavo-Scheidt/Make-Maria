@@ -1,3 +1,4 @@
+<!-- index-->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,13 +10,13 @@
 </head>
 <body>
   
-
+ 
   <div class="particles" id="particles"></div>
-
+ 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-blur"></div>
-
+ 
     <header class="navbar">
       <div class="logo-wrap">
         <img src="img/logo.png" alt="Logo Make Maria" class="butterfly" />
@@ -27,20 +28,20 @@
         <span></span><span></span><span></span>
       </button>
     </header>
-
+ 
     <nav class="nav-drawer" id="navDrawer">
       <button class="drawer-close" id="drawerClose">✕</button>
       <ul>
         <li><a href="#hero">Início</a></li>
         <li><a href="#features">Diferenciais</a></li>
-        <li><a href="#namorados">Namorados</a></li>
+        <li><a href="#copa">Copa do Mundo</a></li>
         <li><a href="#perfumes">Perfumes</a></li>
         <li><a href="#story">Nossa História</a></li>
         <li><a href="#contact">Contato</a></li>
       </ul>
     </nav>
     <div class="drawer-overlay" id="drawerOverlay"></div>
-
+ 
     <div class="hero-content" id="hero">
       <p class="hero-tag"> Beleza Original </p>
       <h1 class="hero-title">
@@ -56,13 +57,13 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-
+ 
     <div class="hero-scroll-hint">
       <span>deslize para baixo</span>
       <div class="scroll-line"></div>
     </div>
   </section>
-
+ 
   <!-- FEATURES -->
   <section class="features" id="features">
     <div class="feature-card reveal">
@@ -87,117 +88,64 @@
       <p>Seus dados e compras protegidos do início ao fim.</p>
     </div>
   </section>
-
-  <!-- DIA DOS NAMORADOS -->
-
-<div class="carousel" id="carouselNamorados">
-
-  <!-- NOVO: Cesta Te Amo -->
-  <div class="perfume-card namorados-card">
-    <div class="card-badge namorados-badge">♥ Especial</div>
-    <div class="card-img-wrap namorados-img-wrap">
-      <img src="img/cesta4.png" alt="Cesta Te Amo com Tododia Framboesa" class="namorados-img" />
-    </div>
-    <div class="card-info">
-      <span class="card-brand">Make Maria</span>
-      <h4>Cesta Te Amo</h4>
-      <p class="card-desc">
-        Body Splash e sabonete Natura Tododia Framboesa e Pimenta Vermelha, flor de crochê e caneca "Te Amo". Um presente cheio de carinho para surpreender quem você ama.
-      </p>
-      <a href="https://whatsss.link/7lljgz" class="card-btn namorados-btn">Pedir no WhatsApp</a>
-    </div>
-  </div>
-
-  <!-- Cesta Dopamine -->
-  <div class="perfume-card namorados-card">
-    <div class="card-badge namorados-badge">♥ Novidade</div>
-    <div class="card-img-wrap namorados-img-wrap">
-      <img src="img/cesta3.png" alt="Cesta com pelúcia e maquiagem Ruby Rose" class="namorados-img" />
-    </div>
-    <div class="card-info">
-      <span class="card-brand">Make Maria</span>
-      <h4>Cesta Dopamine</h4>
-      <p class="card-desc">
-        Pelúcia fofa, paleta Dopamine da Ruby Rose e esmalte vermelho. Uma cesta cheia de charme para encantar quem você ama.
-      </p>
-      <a href="https://whatsss.link/7lljgz" class="card-btn namorados-btn">Pedir no WhatsApp</a>
-    </div>
-  </div>
-
-  <!-- Cesta Personalizada -->
-  <div class="perfume-card namorados-card">
-    <div class="card-badge namorados-badge">♥ Personalizada</div>
-    <div class="card-img-wrap namorados-img-wrap namorados-placeholder">
-      <div class="namorados-placeholder-inner">
-        <span class="inline-style-1">🎁</span>
-        <span class="inline-style-8">monte a sua</span>
+ 
+  <!-- COPA DO MUNDO -->
+  <section class="copa-section" id="copa">
+    <div class="copa-header reveal">
+      <div class="copa-bandeira">
+        <div class="bandeira-verde">
+          <div class="bandeira-losango">
+            <div class="bandeira-circulo">
+              <div class="bandeira-faixa"></div>
+            </div>
+          </div>
+        </div>
       </div>
+      <p class="section-tag copa-tag"> especial copa </p>
+      <h2 class="copa-title">Clima de Copa<br/><em>do Mundo</em></h2>
+      <p class="section-sub">Nossa Decoração</p>
     </div>
-    <div class="card-info">
-      <span class="card-brand">Make Maria</span>
-      <h4>Cesta Personalizada</h4>
-      <p class="card-desc">
-        Escolha os produtos, cores e detalhes da embalagem. Montamos uma cesta especial do seu jeito para presentear.
-      </p>
-      <a href="https://whatsss.link/7lljgz" class="card-btn namorados-btn">Montar minha cesta</a>
+ 
+    <div class="carousel-wrapper">
+      <div class="carousel" id="carouselCopa">
+ 
+        <!-- Kit Torcedora -->
+        <div class="perfume-card copa-card">
+    <div class="copa-img-wrap">
+        <img src="img/loja1.png" class="copa-img" alt="">
     </div>
-  </div>
-
-  <!-- VENDIDA: Cesta Laço Dourado -->
-  <div class="perfume-card namorados-card esgotada">
-    <div class="card-badge namorados-badge" class="inline-style-3">✓ Vendida</div>
-    <div class="card-img-wrap namorados-img-wrap" class="inline-style-2">
-      <img src="img/cesta1.jpg" alt="Cesta Laço Dourado" class="namorados-img" class="inline-style-9" />
-      <div class="inline-style-4">
-        <span class="inline-style-6">Esgotada</span>
-      </div>
-    </div>
-    <div class="card-info" class="inline-style-5">
-      <span class="card-brand">Make Maria</span>
-      <h4>Cesta Laço Dourado</h4>
-      <p class="card-desc">
-        Body Splash Natura Tododia Framboesa e Pimenta Rosa, 2 sabonetes Tododia e brilho labial.
-      </p>
-      <a class="card-btn namorados-btn" class="inline-style-11">Esgotada</a>
-    </div>
-  </div>
-
-  <!-- VENDIDA: Cesta com Ursinho -->
-  <div class="perfume-card namorados-card esgotada">
-    <div class="card-badge namorados-badge" class="inline-style-3">✓ Vendida</div>
-    <div class="card-img-wrap namorados-img-wrap" class="inline-style-2">
-      <img src="img/cesta2.jpg" alt="Cesta com Ursinho" class="namorados-img" class="inline-style-9" />
-      <div class="inline-style-4">
-        <span class="inline-style-6">Esgotada</span>
-      </div>
-    </div>
-    <div class="card-info" class="inline-style-5">
-      <span class="card-brand">Make Maria</span>
-      <h4>Cesta com Ursinho</h4>
-      <p class="card-desc">
-        Body Splash e sabonete Natura Tododia acompanhados de um adorável ursinho.
-      </p>
-      <a class="card-btn namorados-btn" class="inline-style-11">Esgotada</a>
-    </div>
-  </div>
-
 </div>
 
+<div class="perfume-card copa-card">
+    <div class="copa-img-wrap">
+        <img src="img/loja2.png" class="copa-img" alt="">
+    </div>
 </div>
 
-      <div class="carousel-dots" id="carouselDotsNamorados"></div>
+<div class="perfume-card copa-card">
+    <div class="copa-img-wrap">
+        <img src="img/loja3.png" class="copa-img" alt="">
+    </div>
+</div>
+</div>
 
+ 
+        
+ 
+ 
+      <div class="carousel-dots" id="carouselDotsCopa"></div>
+ 
       <div class="carousel-nav">
-        <button class="nav-arrow prev" id="prevBtnNam">
+        <button class="nav-arrow prev" id="prevBtnCopa">
           <svg width="20" height="20" viewBox="0 0 20 20"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </button>
-        <button class="nav-arrow next" id="nextBtnNam">
+        <button class="nav-arrow next" id="nextBtnCopa">
           <svg width="20" height="20" viewBox="0 0 20 20"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
         </button>
       </div>
     </div>
   </section>
-
+ 
   <!-- PRODUTOS MAIS VENDIDOS -->
   <section class="perfumes-section" id="perfumes">
     <div class="section-header reveal">
@@ -205,10 +153,10 @@
       <h2>Produtos Mais<br/><em>Vendidos</em></h2>
       <p class="section-sub">Os favoritos das nossas clientes</p>
     </div>
-
+ 
     <div class="carousel-wrapper">
       <div class="carousel" id="carousel">
-
+ 
         <div class="perfume-card">
           <div class="card-badge">Bestseller</div>
           <div class="card-img-wrap">
@@ -223,7 +171,7 @@
             <a href="https://whatsss.link/7lljgz" class="card-btn">Pedir no WhatsApp</a>
           </div>
         </div>
-
+ 
         <div class="perfume-card">
           <div class="card-badge new">Popular</div>
           <div class="card-img-wrap">
@@ -238,7 +186,7 @@
             <a href="https://whatsss.link/7lljgz" class="card-btn">Pedir no WhatsApp</a>
           </div>
         </div>
-
+ 
         <div class="perfume-card">
           <div class="card-badge">Favorito</div>
           <div class="card-img-wrap">
@@ -253,7 +201,7 @@
             <a href="https://whatsss.link/7lljgz" class="card-btn">Pedir no WhatsApp</a>
           </div>
         </div>
-
+ 
         <div class="perfume-card">
           <div class="card-img-wrap">
             <div class="card-img-placeholder gold">
@@ -267,11 +215,11 @@
             <a href="https://whatsss.link/7lljgz" class="card-btn">Pedir no WhatsApp</a>
           </div>
         </div>
-
+ 
       </div>
-
+ 
       <div class="carousel-dots" id="carouselDots"></div>
-
+ 
       <div class="carousel-nav">
         <button class="nav-arrow prev" id="prevBtn">
           <svg width="20" height="20" viewBox="0 0 20 20"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
@@ -282,7 +230,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- NOSSA HISTÓRIA -->
   <section class="story-section" id="story">
     <div class="story-card reveal">
@@ -301,7 +249,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- CONTATO -->
   <section class="contact-section" id="contact">
     <div class="contact-card reveal">
@@ -317,9 +265,9 @@
         <p>Dúvidas, sugestões ou pedidos? Será um prazer atender você.</p>
       </div>
     </div>
-
+ 
     <!-- BOTÃO AVALIAÇÕES -->
-    <a href="https://www.google.com/maps/place/Make+maria/@-25.4399208,-49.1853343,17z/data=!4m8!3m7!1s0x94dcefbb692d9ac3:0x45bc50fa48ce0584!8m2!3d-25.4397949!4d-49.1827594!9m1!1b1!16s%2Fg%2F11fhvslhzb?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D target="_blank" class="btn-reviews reveal">
+    <a href="https://www.google.com/maps/place/Make+maria/@-25.4399208,-49.1853343,17z/data=!4m8!3m7!1s0x94dcefbb692d9ac3:0x45bc50fa48ce0584!8m2!3d-25.4397949!4d-49.1827594!9m1!1b1!16s%2Fg%2F11fhvslhzb?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-reviews reveal">
       <svg class="icon-hand" width="18" height="18" viewBox="0 0 24 24" fill="none">
         <path d="M8 11V6.5a1.5 1.5 0 0 1 3 0V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M11 10.5a1.5 1.5 0 0 1 3 0V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -331,13 +279,13 @@
         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </a>
-
+ 
     <!-- AVALIAÇÕES GOOGLE -->
     <p class="section-tag reviews-header">
-  <span>⭐</span>
-  <span>AVALIAÇÕES REAIS</span>
-  <span>⭐</span>
-</p>
+      <span>⭐</span>
+      <span>AVALIAÇÕES REAIS</span>
+      <span>⭐</span>
+    </p>
       <div class="review-card">
         <div class="review-header">
           <div class="review-avatar">E</div>
@@ -348,7 +296,7 @@
         </div>
         <p class="review-text">Muito bom, atendimento foi muito bom equipe muito atenciosa e produto de boa qualidade.</p>
       </div>
-
+ 
       <div class="review-card">
         <div class="review-header">
           <div class="review-avatar">V</div>
@@ -360,32 +308,32 @@
         <p class="review-text">Super recomendo, uma loja organizada cheia de novidades e além de ótimo atendimento adorei os produtos todos de ótima qualidade.</p>
       </div>
     </div>
-
+ 
     <a href="https://whatsss.link/7lljgz" class="btn-whatsapp reveal delay-1">
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
       Chamar no WhatsApp
     </a>
-
+ 
     <a href="https://www.minhaloja.natura.com/consultoria/claudianasilveriopaixao?marca=natura"
        class="btn-natura reveal delay-2"
        target="_blank">
       <img src="img/natura-logo.png" alt="Natura" class="natura-logo-btn">
       Comprar na Loja Natura
     </a>
-
+ 
   </section>
-
+ 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-logo">
       <span class="logo-script small">Make Maria</span>
       <span class="logo-sub"> Cosméticos </span>
     </div>
-    <p>© 2026 Make Maria Cosméticos. Feito com <span class="inline-style-10">♥</span></p>
+    <p>© 2026 Make Maria Cosméticos. Feito com <span style="color:#e8a0b0">♥️</span></p>
   </footer>
-
+ 
   <script src="home.js"></script>
 </body>
 </html>

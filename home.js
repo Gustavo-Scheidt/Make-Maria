@@ -242,11 +242,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initCarousel({
-    carouselId: 'carouselNamorados',
-    dotsId: 'carouselDotsNamorados',
-    prevBtnId: 'prevBtnNam',
-    nextBtnId: 'nextBtnNam'
-  });
+  carouselId: 'carouselCopa',
+  dotsId: 'carouselDotsCopa',
+  prevBtnId: 'prevBtnCopa',
+  nextBtnId: 'nextBtnCopa'
+});
 
   initCarousel({
     carouselId: 'carousel',
