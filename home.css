@@ -489,7 +489,6 @@ body {
   width: 80px;
   height: 120px;
   object-fit: contain;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
   transition: transform 0.4s;
 }
 .perfume-card:hover .card-img-placeholder img { transform: translateY(-4px) scale(1.05); }
@@ -1057,4 +1056,104 @@ body {
 .copa-card p,
 .copa-card h3{
     display: none !important;
+}
+
+/* ============================================================
+   PROMOÇÕES
+   ============================================================ */
+.promo-section {
+  padding: 60px 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.promo-tag-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.promo-tag-label {
+  color: #c0306a;
+  margin-bottom: 14px;
+}
+
+.promo-title em {
+  color: #e8538a;
+}
+
+.promo-badge-wrap {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+}
+
+.promo-percent {
+  background: #e8538a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(232,83,138,0.35);
+  animation: promo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes promo-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.07); }
+}
+
+.promo-price-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.promo-price-old {
+  font-size: 12px;
+  color: var(--light-text);
+  text-decoration: line-through;
+}
+
+.promo-price-new {
+  font-size: 16px;
+  font-weight: 600;
+  color: #c0306a;
+}
+
+.promo-btn {
+  background: linear-gradient(135deg, #e8538a, #c0306a);
+}
+
+/* ============================================================
+   FOGO ANIMADO — Seção de Promoções
+   ============================================================ */
+.promo-tag-icon .flame-main {
+  transform-origin: 28px 48px;
+  animation: flicker-main 1.4s ease-in-out infinite alternate;
+}
+
+.promo-tag-icon .flame-inner {
+  transform-origin: 28px 42px;
+  animation: flicker-inner 1s ease-in-out infinite alternate;
+}
+
+@keyframes flicker-main {
+  0%   { transform: scaleX(1)    scaleY(1)    rotate(-1deg); }
+  25%  { transform: scaleX(0.94) scaleY(1.04) rotate(1.5deg); }
+  50%  { transform: scaleX(1.04) scaleY(0.97) rotate(-0.5deg); }
+  75%  { transform: scaleX(0.97) scaleY(1.06) rotate(2deg); }
+  100% { transform: scaleX(1.02) scaleY(0.98) rotate(-1.5deg); }
+}
+
+@keyframes flicker-inner {
+  0%   { transform: scaleX(1)    scaleY(1)    rotate(1deg); }
+  33%  { transform: scaleX(0.9)  scaleY(1.08) rotate(-2deg); }
+  66%  { transform: scaleX(1.06) scaleY(0.94) rotate(1.5deg); }
+  100% { transform: scaleX(0.96) scaleY(1.04) rotate(-1deg); }
 }

@@ -255,6 +255,13 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtnId: 'nextBtn'
   });
 
+  initCarousel({
+  carouselId: 'carouselPromo',
+  dotsId: 'carouselDotsPromo',
+  prevBtnId: 'prevBtnPromo',
+  nextBtnId: 'nextBtnPromo'
+});
+
   /* ─────────────────────────────────────────
      5. EFEITO PARALLAX SUAVE NO HERO
   ───────────────────────────────────────── */
