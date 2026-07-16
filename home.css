@@ -1156,3 +1156,182 @@ body {
   66%  { transform: scaleX(1.06) scaleY(0.94) rotate(1.5deg); }
   100% { transform: scaleX(0.96) scaleY(1.04) rotate(-1deg); }
 }
+
+/* ============================================================
+   PERFUMES ÁRABES — padrão, ícone animado e cards dourados
+   ============================================================ */
+
+/* Fundo com padrão arabesco sutil atrás do cabeçalho */
+.arabes-header{
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 8px;
+    overflow: visible;
+}
+
+.arabes-header::before{
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 260px;
+    background-image:
+        radial-gradient(circle, rgba(212,175,55,0.14) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(circle, #000 40%, transparent 75%);
+    mask-image: radial-gradient(circle, #000 40%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ícone com brilho e balanço suave, tipo lanterna árabe */
+.arabes-tag-icon{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+    animation: arabesFloat 4.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 0 rgba(212,175,55,0));
+}
+
+.arabes-tag-icon svg{
+    animation: arabesGlow 3s ease-in-out infinite;
+}
+
+@keyframes arabesFloat{
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-6px) rotate(-3deg); }
+}
+
+@keyframes arabesGlow{
+    0%, 100% { filter: drop-shadow(0 0 2px rgba(212,175,55,0.25)); }
+    50%      { filter: drop-shadow(0 0 10px rgba(212,175,55,0.65)); }
+}
+
+/* Tag e título */
+.arabes-tag{
+    position: relative;
+    z-index: 1;
+    color: #b8902a;
+    letter-spacing: 4px;
+}
+
+.arabes-title{
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-serif);
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--dark);
+}
+
+.arabes-title em{
+    display: block;
+    font-style: italic;
+    background: linear-gradient(90deg, #b8902a, #D4AF37 40%, #f0d78c 60%, #b8902a);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: arabesShine 4s linear infinite;
+}
+
+@keyframes arabesShine{
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Divisor ornamental abaixo do título */
+.arabes-header::after{
+    content: "";
+    display: block;
+    width: 90px;
+    height: 2px;
+    margin: 16px auto 0;
+    background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+    position: relative;
+    z-index: 1;
+}
+
+/* Cards com brilho dourado no hover/foco */
+.arabes-card{
+    position: relative;
+    border: 1px solid rgba(212,175,55,0.22);
+    transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+}
+
+.arabes-card::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, transparent, rgba(212,175,55,0.5), transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .4s ease;
+    pointer-events: none;
+}
+
+.arabes-card:hover,
+.arabes-card.active-card{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(212,175,55,0.22);
+}
+
+.arabes-card:hover::before,
+.arabes-card.active-card::before{
+    opacity: 1;
+}
+
+/* Entrada escalonada dos 6 cards ao rolar até a seção */
+#carouselArabes .arabes-card{
+    opacity: 0;
+    transform: translateY(18px);
+    animation: arabesCardIn .6s ease forwards;
+}
+
+#carouselArabes .arabes-card:nth-child(1){ animation-delay: .05s; }
+#carouselArabes .arabes-card:nth-child(2){ animation-delay: .15s; }
+#carouselArabes .arabes-card:nth-child(3){ animation-delay: .25s; }
+#carouselArabes .arabes-card:nth-child(4){ animation-delay: .35s; }
+#carouselArabes .arabes-card:nth-child(5){ animation-delay: .45s; }
+#carouselArabes .arabes-card:nth-child(6){ animation-delay: .55s; }
+
+@keyframes arabesCardIn{
+    to{ opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px){
+    .arabes-title{ font-size: 34px; }
+    .arabes-header::before{ width: 200px; height: 200px; }
+}
+
+/* Muda a cor apenas do texto de baixo (itálico) */
+.arabes-title em {
+    color: rgba(212, 175, 55, 0.817) !important; /* Coloque aqui a cor que você deseja */
+    background: none !important; /* Remove o degradê antigo */
+    -webkit-text-fill-color: currentcolor !important; /* Força a nova cor a aparecer */
+}
+
+/* ✏️ MODIFICADO — Aumenta o tamanho das imagens dos perfumes árabes */
+#carouselArabes .card-img-wrap{
+    height: 210px;
+}
+
+#carouselArabes .card-img-placeholder{
+    width: 115px;
+    height: 165px;
+}
+
+#carouselArabes .card-img-placeholder img{
+    width: 115px;
+    height: 165px;
+}

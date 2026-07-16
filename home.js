@@ -241,11 +241,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveCard(0);
   }
 
-  initCarousel({
-  carouselId: 'carouselCopa',
-  dotsId: 'carouselDotsCopa',
-  prevBtnId: 'prevBtnCopa',
-  nextBtnId: 'nextBtnCopa'
+initCarousel({
+  carouselId: 'carouselArabes',
+  dotsId: 'carouselDotsArabes',
+  prevBtnId: 'prevBtnArabes',
+  nextBtnId: 'nextBtnArabes'
 });
 
   initCarousel({
