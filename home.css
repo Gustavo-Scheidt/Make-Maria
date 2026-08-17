@@ -707,6 +707,18 @@ body {
   line-height: 1.5;
 }
 
+/* ✏️ MODIFICADO: mapa incorporado */
+.map-embed {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.map-embed iframe {
+  display: block;
+}
+
 .btn-whatsapp {
   display: flex;
   align-items: center;
