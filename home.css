@@ -1078,6 +1078,14 @@ body {
   overflow: hidden;
 }
 
+#arabes {
+  padding-bottom: 24px;
+}
+
+#arabes + .promo-section {
+  padding-top: 24px;
+}
+
 .promo-tag-icon {
   display: flex;
   justify-content: center;
