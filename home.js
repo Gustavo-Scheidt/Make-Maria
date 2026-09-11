@@ -315,7 +315,62 @@ initCarousel({
   document.querySelectorAll('.btn-primary, .btn-whatsapp, .card-btn').forEach(addRipple);
 
   /* ─────────────────────────────────────────
-     7. ANIMAÇÃO NO ÍCONE DA BORBOLETA
+     7. MODAL DE NOTAS OLFATIVAS
+  ───────────────────────────────────────── */
+  const notesOverlay = document.getElementById('notesModalOverlay');
+  const notesModal = document.getElementById('notesModal');
+  const notesModalClose = document.getElementById('notesModalClose');
+  const notesModalImg = document.getElementById('notesModalImg');
+  const notesModalBrand = document.getElementById('notesModalBrand');
+  const notesModalTitle = document.getElementById('notesModalTitle');
+  const notesTopo = document.getElementById('notesTopo');
+  const notesCoracao = document.getElementById('notesCoracao');
+  const notesFundo = document.getElementById('notesFundo');
+  const notesModalBtn = document.getElementById('notesModalBtn');
+
+  function openNotesModal(card) {
+    const brand = card.querySelector('.card-brand')?.textContent.trim() || '';
+    const title = card.querySelector('h4')?.textContent.trim() || '';
+    const imgSrc = card.querySelector('.card-img-wrap img')?.getAttribute('src') || '';
+    const btnHref = card.querySelector('.card-btn')?.getAttribute('href');
+
+    notesModalBrand.textContent = brand;
+    notesModalTitle.textContent = title;
+    notesModalImg.innerHTML = imgSrc ? `<img src="${imgSrc}" alt="${title}">` : '';
+    notesTopo.textContent = card.dataset.notasTopo || '—';
+    notesCoracao.textContent = card.dataset.notasCoracao || '—';
+    notesFundo.textContent = card.dataset.notasFundo || '—';
+
+    if (btnHref) notesModalBtn.setAttribute('href', btnHref);
+
+    notesOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNotesModal() {
+    notesOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (notesOverlay) {
+    document.querySelectorAll('.perfume-card[data-notas-topo]').forEach(card => {
+      card.addEventListener('click', e => {
+        if (e.target.closest('.card-btn')) return; // não abre modal ao clicar em "Pedir no WhatsApp"
+        openNotesModal(card);
+      });
+    });
+
+    notesModalClose.addEventListener('click', closeNotesModal);
+    notesOverlay.addEventListener('click', e => {
+      if (e.target === notesOverlay) closeNotesModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeNotesModal();
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     8. ANIMAÇÃO NO ÍCONE DA BORBOLETA
   ───────────────────────────────────────── */
   const butterfly = document.querySelector('.butterfly');
 
